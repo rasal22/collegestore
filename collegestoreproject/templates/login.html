@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png" />
+    <title>Edustage Education</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %}" />
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+<body style="background:LightSalmon";>
+ <header class="header_area">
+      <div class="main_menu">
+        <div class="search_input" id="search_input_box">
+          <div class="container">
+            <form class="d-flex justify-content-between" method="" action="">
+              <input
+                type="text"
+                class="form-control"
+                id="search_input"
+                placeholder="Search Here"
+              />
+              <button type="submit" class="btn"></button>
+              <span
+                class="ti-close"
+                id="close_search"
+                title="Close Search"
+              ></span>
+            </form>
+          </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="index.html"><img src="{% static ' img/logo.png' %}" alt=""/></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="icon-bar"></span> <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse offset"
+              id="navbarSupportedContent">
+              <ul class="nav navbar-nav menu_nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about">About</a>
+                </li>
+                <li class="nav-item submenu dropdown">
+                  <a
+                    href="#"
+                    class="nav-link dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false">Department</a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-item">
+                      <a class="nav-link" href="computer">Computer Science</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="commerce">Commerce</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="psychology">Psychology</a>
+                    </li>
+                     <li class="nav-item">
+                      <a class="nav-link" href="science">Science</a>
+                    </li>
+                     <li class="nav-item">
+                      <a class="nav-link" href="philosophy">Philosophy</a>
+                    </li>
+                  </ul>
+                </li>
+                {% if user.is_authenticated %}
+                <li>Hello {{user.username}}</li>
+                <li class="nav-item">
+                  <a class="nav-link" href="register/logout">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="register/register">Register</a>
+                </li>
+                 <li class="nav-item">
+                  <a class="nav-link" href="register/login">Login</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a href="#" class="nav-link search" id="search">
+                    <i class="ti-search"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header><br><br><br><br><br>
+<h1 style="color:black;">Login</h1>
+<div class="container-fluid">
+     <form action="{% url 'login' %}" method="POST">
+       {% csrf_token %}
+  <div class="col-md-6">
+    <label for="username" class="form-label">Username</label>
+    <input name="username" type="text" class="form-control" id="username">
+  </div><br>
+  <div class="col-md-6">
+    <label for="Password" class="form-label">Password</label>
+    <input name="password" type="password" class="form-control" id="Password">
+  </div><br>
+      <div class="col-12">
+    <button type="submit" class="btn btn-success btn-lg">Submit</button>
+  </div>
+</form><br><br>
+    <h4>Don't have an account?</h4><a href="register">Register</a>
+
+
+    <div class="form-group">
+      {% for message in messages %}
+      <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
+<!--<h4>Don't have an account?</h4>-->
+<!--<a href="register">Register</a>-->
+
+
+<!--{% for msg in messages %}-->
+<!--<h2>{{msg}}</h2>-->
+<!--{% endfor %}-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link rel="stylesheet" href="style.css">-->
+<!--    <style>-->
+<!--    .login-box-->
+<!--     {-->
+<!--        background:red;-->
+<!--        max-width:500px;-->
+<!--        margin:auto;-->
+<!--        padding:10px-->
+<!--     }-->
+<!--     .input-box input:focus~label,-->
+<!--     .input-box input:valid~label{-->
+<!--         top: -5px;-->
+<!--     }-->
+
+<!--    </style>-->
+
+<!--</head>-->
+<!--<body style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:#000;}" >-->
+<!--   <div class="login-box">-->
+<!--     <form action="">-->
+<!--       <h2 style="font-size:2em;color:white;text-align:center;">Login</h2>-->
+
+<!--       <div class="input-box" style="position:relative;width:310px;margin:30px 0;border-bottom:2px solid #fff;" >-->
+<!--         <span class="icon" style="position:absolute;right:8px;color:white;font-size:1.2em;line-height:57px;" >-->
+<!--           <ion-icon name="person-circle"></ion-icon>-->
+<!--         </span>-->
+<!--           <input type="text" required style="width:100px;height:50px;background:transparent;border:none;outline:none;font-size:1em;color:white">-->
+<!--           <label style="position:absolute;top:50%;left:5px;transform:translateY(-50%);font-size:1em;color:white;pointer-events:none;top: -5px">username</label>-->
+<!--       </div>-->
+
+<!--         <div class="input-box"  style="position:relative;width:310px;margin:30px 0;border-bottom:2px solid #fff;">-->
+<!--         <span class="icon" style="position:absolute;right:8px;color:white;font-size:1.2em;line-height:57px;">-->
+<!--             <ion-icon name="lock-closed"></ion-icon>-->
+<!--         </span>-->
+<!--           <input type="password" required style="width:100px;height:50px;background:transparent;border:none;outline:none;font-size:1em;color:white">-->
+<!--           <label style="position:absolute;top:50%;left:5px;transform:translateY(-50%);font-size:1em;color:white;pointer-events:none;transition:.5s;top: -5px">password</label>-->
+<!--         </div>-->
+
+<!--         <div class="remember-forgot" style="margin:-15px 0 15px;font-size:.9em;color:white;display:flex;justify-content:space-between;">-->
+<!--             <label><input type="checkbox">Remember me </label>-->
+<!--             <a herf="#" style="color:white;text-decoration:none;">Forgot Password?</a>-->
+<!--         </div>-->
+
+<!--         <input  type="submit"><br>-->
+
+<!--         <div class="register-link">-->
+<!--             <p>Don't have an account?<a href="register">Register</a></p>-->
+<!--         </div>-->
+
+
+<!--     </form>-->
+<!--   </div>-->
+<!--<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>-->
+<!--<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>-->
+
+
+
+
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!--i b  style="position:relative;width:310px;margin:30px 0;border-bottom:2px solid #fff;"-->
+<!--i b-l style="position:absolute;top:50%;left:5px;transform:translateY(-50%);font-size:1em;color:red;pointer-events:none;"-->
+<!--i b-i style="position:absolute;right:8px;color:white;font-size:1.2em;line-height:57px;"-->
+<!--i b-input style="width:100px;height:50px;background:transparent;border:none;font-size:1em;color:#fff;outline:none;"-->
+<!--l box style="position:relative;width:400px;height:450px;background:red;justify-content:center;align-items:center;"-->
+<!--body    style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:#000;"-->
+
+<!--remember forgot style="margin:-15px 0 15px;font-size:.9em;color:white;display:flex;justify-content:space-between;"-->
+<!--r f label input style="margin-right:3px;"-->
+<!--rf a style="color:white;text-decoration:none;"-->
+<!--rf a:hover  style="text-decoration:underline;"-->
+<!--button style="width:100%;height:40px;background:white;border:none;outline:none;border-radius:40px;cursor:pointer;font-size:1em;color:black;font-weight:500;"-->
